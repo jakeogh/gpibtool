@@ -1,0 +1,6 @@
+.git
+.edit_config
+enable_github.sh
+gpibtool-9999.ebuild
+.push_enabled
+.postprocess_readme.sh
