@@ -44,9 +44,8 @@ class NoResourcesFoundError(ValueError):
 def get_instrument(
     *,
     address: str,
-    verbose: bool | int | float,
+    verbose: bool | int | float = False,
 ):
-
     if verbose:
         ic(address)
     rm = pyvisa.ResourceManager("@py")
@@ -60,9 +59,8 @@ def command_query(
     *,
     address: str,
     command: str,
-    verbose: bool | int | float,
+    verbose: bool | int | float = False,
 ):
-
     if verbose:
         ic(address)
     inst = get_instrument(
@@ -79,18 +77,16 @@ def command_query(
 def command_idn(
     *,
     address: str,
-    verbose: bool | int | float,
+    verbose: bool | int | float = False,
 ):
-
     idn = command_query(address=address, command="*IDN?", verbose=verbose)
     return idn
 
 
 def get_resources(
     keep_asrl: bool,
-    verbose: bool | int | float,
+    verbose: bool | int | float = False,
 ):
-
     if verbose:
         ic(keep_asrl)
 
@@ -125,11 +121,10 @@ def get_resources(
 @click.pass_context
 def cli(
     ctx,
-    verbose: bool | int | float,
     verbose_inf: bool,
     dict_output: bool,
+    verbose: bool | int | float = False,
 ):
-
     tty, verbose = tv(
         ctx=ctx,
         verbose=verbose,
@@ -142,11 +137,10 @@ def cli(
 @click.pass_context
 def _read_command_idn(
     ctx,
-    verbose: bool | int | float,
     verbose_inf: bool,
     dict_output: bool,
+    verbose: bool | int | float = False,
 ):
-
     tty, verbose = tv(
         ctx=ctx,
         verbose=verbose,
@@ -169,11 +163,10 @@ def _read_command_idn(
 @click.pass_context
 def _pyvisa_info(
     ctx,
-    verbose: bool | int | float,
     verbose_inf: bool,
     dict_output: bool,
+    verbose: bool | int | float = False,
 ):
-
     tty, verbose = tv(
         ctx=ctx,
         verbose=verbose,
@@ -197,11 +190,10 @@ def _pyvisa_info(
 @click.pass_context
 def _bnf_syntax(
     ctx,
-    verbose: bool | int | float,
     verbose_inf: bool,
     dict_output: bool,
+    verbose: bool | int | float = False,
 ):
-
     tty, verbose = tv(
         ctx=ctx,
         verbose=verbose,
@@ -262,11 +254,10 @@ def _command_write(
     ctx,
     address: str,
     command: str,
-    verbose: bool | int | float,
     verbose_inf: bool,
     dict_output: bool,
+    verbose: bool | int | float = False,
 ):
-
     tty, verbose = tv(
         ctx=ctx,
         verbose=verbose,
@@ -298,11 +289,10 @@ def _command_query(
     ctx,
     address: str,
     command: str,
-    verbose: bool | int | float,
     verbose_inf: bool,
     dict_output: bool,
+    verbose: bool | int | float = False,
 ):
-
     tty, verbose = tv(
         ctx=ctx,
         verbose=verbose,
@@ -331,12 +321,11 @@ def _command_query(
 @click.pass_context
 def _list_addresses(
     ctx,
-    verbose: bool | int | float,
     verbose_inf: bool,
     dict_output: bool,
     asrl: bool,
+    verbose: bool | int | float = False,
 ):
-
     tty, verbose = tv(
         ctx=ctx,
         verbose=verbose,
@@ -357,12 +346,11 @@ def _list_addresses(
 @click.pass_context
 def _list_idns(
     ctx,
-    verbose: bool | int | float,
     verbose_inf: bool,
     dict_output: bool,
     asrl: bool,
+    verbose: bool | int | float = False,
 ):
-
     dict_output = True  # this does not take input on stdin, todo: fix dict_output convention to reflect this
     tty, verbose = tv(
         ctx=ctx,
