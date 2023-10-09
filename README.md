@@ -40,30 +40,135 @@ Commands:
 
 $ # list current GPIB addresses:
 $ gpibtool addresses
-GPIB0::2::INSTR
+Traceback (most recent call last):
+  File "/usr/lib/python-exec/python3.11/gpibtool", line 33, in <module>
+    sys.exit(load_entry_point('gpibtool==0.1', 'console_scripts', 'gpibtool')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/decorators.py", line 33, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 336, in _list_addresses
+    resources = get_resources(keep_asrl=asrl, verbose=verbose)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 116, in get_resources
+    raise NoResourcesFoundError
+gpibtool.gpibtool.NoResourcesFoundError
 
 $ # send the `*IDN?` command to each address:
 $ gpibtool idns
-{'GPIB0::2::INSTR': 'TEKTRONIX,AFG3022B,C037086,SCPI:99.0 FV:3.2.2'}
+Traceback (most recent call last):
+  File "/usr/lib/python-exec/python3.11/gpibtool", line 33, in <module>
+    sys.exit(load_entry_point('gpibtool==0.1', 'console_scripts', 'gpibtool')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/decorators.py", line 33, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 361, in _list_idns
+    resources = get_resources(keep_asrl=asrl, verbose=verbose)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 116, in get_resources
+    raise NoResourcesFoundError
+gpibtool.gpibtool.NoResourcesFoundError
 
 $ # send the `*IDN?` command to an address:
 $ gpibtool command-query "GPIB0::2::INSTR" "*IDN?"
-TEKTRONIX,AFG3022B,C037086,SCPI:99.0 FV:3.2.2
+libgpib: IBOPENDEV ioctl failed
+libgpib: error in is_cic()!
+Traceback (most recent call last):
+  File "/usr/lib/python-exec/python3.11/gpibtool", line 33, in <module>
+    sys.exit(load_entry_point('gpibtool==0.1', 'console_scripts', 'gpibtool')())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/click/decorators.py", line 33, in new_func
+    return f(get_current_context(), *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 302, in _command_query
+    inst = get_instrument(
+           ^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 52, in get_instrument
+    inst = rm.open_resource(address)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/pyvisa/highlevel.py", line 3284, in open_resource
+    res.open(access_mode, open_timeout)
+  File "/usr/lib/python3.11/site-packages/pyvisa/resources/resource.py", line 282, in open
+    self.session, status = self._resource_manager.open_bare_resource(
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/pyvisa/highlevel.py", line 3209, in open_bare_resource
+    return self.visalib.open(self.session, resource_name, access_mode, open_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/pyvisa_py/highlevel.py", line 167, in open
+    sess = cls(session, resource_name, parsed, open_timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/pyvisa_py/sessions.py", line 324, in __init__
+    self.after_parsing()
+  File "/usr/lib/python3.11/site-packages/pyvisa_py/gpib.py", line 279, in after_parsing
+    self.interface = Gpib(
+                     ^^^^^
+  File "/usr/lib/python3.11/site-packages/gpib_ctypes/Gpib.py", line 31, in __init__
+    self.id = gpib.dev(name, pad, sad, timeout, send_eoi, eos_mode)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.11/site-packages/gpib_ctypes/gpib/gpib.py", line 306, in dev
+    raise GpibError("dev")
+gpib_ctypes.gpib.gpib.GpibError: dev() error: Errno 19, No such device
 
 $ # display troubleshooting info:
 $ gpibtool info
 Output of /usr/bin/pyvisa-info:
 Machine Details:
-   Platform ID:    Linux-6.0.5-gentoo-x86_64-x86_64-Intel-R-_Core-TM-_i7-4910MQ_CPU_@_2.90GHz-with-glibc2.36
+   Platform ID:    Linux-6.4.5-gentoo-x86_64-x86_64-Intel-R-_Core-TM-_i7-4910MQ_CPU_@_2.90GHz-with-glibc2.38
    Processor:      Intel(R) Core(TM) i7-4910MQ CPU @ 2.90GHz
 
 Python:
    Implementation: CPython
-   Executable:     /usr/bin/python3.10
-   Version:        3.10.10
-   Compiler:       GCC 12.2.1 20230121
+   Executable:     /usr/bin/python3.11
+   Version:        3.11.5
+   Compiler:       GCC 12.2.1 20230304
    Bits:           64bit
-   Build:          Mar  5 2023 13:57:21 (#main)
+   Build:          Aug 25 2023 00:06:00 (#main)
    Unicode:        UCS4
 
 PyVISA Version: 1.13.0
@@ -91,8 +196,16 @@ Backends:
       Spec version: 1.1
 
 Output of /usr/bin/lsusb:
-Bus 004 Device 004: ID 0781:5588 SanDisk Corp. Extreme Pro
-Bus 004 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 002 Device 029: ID 3923:709b National Instruments Corp. GPIB-USB-HS
+Bus 002 Device 002: ID 8087:8000 Intel Corp. Integrated Rate Matching Hub
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 004 Device 002: ID 8087:8008 Intel Corp. Integrated Rate Matching Hub
+Bus 004 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 003 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+Bus 001 Device 003: ID 138a:003f Validity Sensors, Inc. VFS495 Fingerprint Reader
+Bus 001 Device 002: ID 08bb:29b0 Texas Instruments PCM2900B Audio CODEC
+Bus 001 Device 005: ID 8087:07dc Intel Corp. Bluetooth wireless interface
+Bus 001 Device 007: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
+Bus 001 Device 006: ID 05e3:0608 Genesys Logic, Inc. Hub
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 
 ```

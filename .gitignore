@@ -2,5 +2,5 @@
 .edit_config
 enable_github.sh
 gpibtool-9999.ebuild
-.push_enabled
+.push
 .postprocess_readme.sh

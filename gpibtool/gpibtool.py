@@ -27,8 +27,9 @@ from bnftool import get_bnf_syntax
 from click_auto_help import AHGroup
 from clicktool import click_add_options
 from clicktool import click_global_options
-from clicktool import tv
+from clicktool import tvicgvd
 from eprint import eprint
+from globalverbose import gvd
 from mptool import output
 from pyvisa.errors import VisaIOError
 from stdiotool import supress_stderr
@@ -44,7 +45,7 @@ class NoResourcesFoundError(ValueError):
 def get_instrument(
     *,
     address: str,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
     if verbose:
         ic(address)
@@ -59,7 +60,7 @@ def command_query(
     *,
     address: str,
     command: str,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
     if verbose:
         ic(address)
@@ -77,7 +78,7 @@ def command_query(
 def command_idn(
     *,
     address: str,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
     idn = command_query(address=address, command="*IDN?", verbose=verbose)
     return idn
@@ -85,7 +86,7 @@ def command_idn(
 
 def get_resources(
     keep_asrl: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
     if verbose:
         ic(keep_asrl)
@@ -123,12 +124,14 @@ def cli(
     ctx,
     verbose_inf: bool,
     dict_output: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
-    tty, verbose = tv(
+    tty, verbose = tvicgvd(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
+        ic=ic,
+        gvd=gvd,
     )
 
 
@@ -139,12 +142,14 @@ def _read_command_idn(
     ctx,
     verbose_inf: bool,
     dict_output: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
-    tty, verbose = tv(
+    tty, verbose = tvicgvd(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
+        ic=ic,
+        gvd=gvd,
     )
 
     iterator: Sequence[str] = unmp(valid_types=[str], verbose=verbose)
@@ -165,12 +170,14 @@ def _pyvisa_info(
     ctx,
     verbose_inf: bool,
     dict_output: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
-    tty, verbose = tv(
+    tty, verbose = tvicgvd(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
+        ic=ic,
+        gvd=gvd,
     )
 
     info_command = sh.Command("pyvisa-info")
@@ -192,12 +199,14 @@ def _bnf_syntax(
     ctx,
     verbose_inf: bool,
     dict_output: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
-    tty, verbose = tv(
+    tty, verbose = tvicgvd(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
+        ic=ic,
+        gvd=gvd,
     )
 
     bnf_symbols = get_bnf_syntax()
@@ -256,12 +265,14 @@ def _command_write(
     command: str,
     verbose_inf: bool,
     dict_output: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
-    tty, verbose = tv(
+    tty, verbose = tvicgvd(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
+        ic=ic,
+        gvd=gvd,
     )
 
     inst = get_instrument(
@@ -291,12 +302,14 @@ def _command_query(
     command: str,
     verbose_inf: bool,
     dict_output: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
-    tty, verbose = tv(
+    tty, verbose = tvicgvd(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
+        ic=ic,
+        gvd=gvd,
     )
 
     inst = get_instrument(
@@ -324,12 +337,14 @@ def _list_addresses(
     verbose_inf: bool,
     dict_output: bool,
     asrl: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
-    tty, verbose = tv(
+    tty, verbose = tvicgvd(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
+        ic=ic,
+        gvd=gvd,
     )
 
     # https://github.com/pyvisa/pyvisa-py/issues/282
@@ -349,13 +364,15 @@ def _list_idns(
     verbose_inf: bool,
     dict_output: bool,
     asrl: bool,
-    verbose: bool | int | float = False,
+    verbose: bool = False,
 ):
     dict_output = True  # this does not take input on stdin, todo: fix dict_output convention to reflect this
-    tty, verbose = tv(
+    tty, verbose = tvicgvd(
         ctx=ctx,
         verbose=verbose,
         verbose_inf=verbose_inf,
+        ic=ic,
+        gvd=gvd,
     )
 
     resources = get_resources(keep_asrl=asrl, verbose=verbose)

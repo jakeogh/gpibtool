@@ -9,7 +9,7 @@ if not sys.version_info[0] == 3:
     sys.exit("Python 3 is required. Use: 'python3 setup.py install'")
 
 dependencies = [
-    "icecream",
+    "icecream @ git+https://git@github.com/jakeogh/icecream",
     "click",
     "PyVISA-py",
     "sh",
