@@ -34,7 +34,6 @@ from globalverbose import gvd
 from mptool import output
 from pyvisa.errors import VisaIOError
 from stdiotool import supress_stderr
-from unmp import unmp
 
 signal(SIGPIPE, SIG_DFL)
 
@@ -137,10 +136,12 @@ def cli(
 
 
 @cli.command("idn")
+@cli.argument("addresses", type=str, nargs=-1)
 @click_add_options(click_global_options)
 @click.pass_context
 def _read_command_idn(
     ctx,
+    addresses: tuple[str, ...],
     verbose_inf: bool,
     dict_output: bool,
     verbose: bool = False,
@@ -153,8 +154,7 @@ def _read_command_idn(
         gvd=gvd,
     )
 
-    iterator: Sequence[str] = unmp(valid_types=[str], verbose=verbose)
-    for address in iterator:
+    for address in addresses:
         output(
             command_idn(address=address, verbose=verbose),
             reason=address,
@@ -329,7 +329,7 @@ def _command_query(
     )
 
 
-@cli.command("addresses")
+@cli.command("list-addresses")
 @click.option("--asrl", is_flag=True)
 @click_add_options(click_global_options)
 @click.pass_context
@@ -356,7 +356,7 @@ def _list_addresses(
         output(resource, reason=None, tty=tty, dict_output=dict_output, verbose=verbose)
 
 
-@cli.command("idns")
+@cli.command("list-idns")
 @click.option("--asrl", is_flag=True)
 @click_add_options(click_global_options)
 @click.pass_context
