@@ -10,6 +10,7 @@
 # from pyvisa.errors import VisaIOError
 # from gpib import GpibError
 
+
 from __future__ import annotations
 
 import sys

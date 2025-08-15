@@ -24,7 +24,7 @@ $ gpibtool --help
 Usage: gpibtool [OPTIONS] COMMAND [ARGS]...
 
 Options:
-  -v, --verbose
+  --verbose
   --dict
   --verbose-inf
   --help         Show this message and exit.
@@ -40,172 +40,188 @@ Commands:
 
 $ # list current GPIB addresses:
 $ gpibtool addresses
-Traceback (most recent call last):
-  File "/usr/lib/python-exec/python3.11/gpibtool", line 33, in <module>
-    sys.exit(load_entry_point('gpibtool==0.1', 'console_scripts', 'gpibtool')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1157, in __call__
-    return self.main(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1078, in main
-    rv = self.invoke(ctx)
-         ^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1688, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1434, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 783, in invoke
-    return __callback(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/decorators.py", line 33, in new_func
-    return f(get_current_context(), *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 336, in _list_addresses
-    resources = get_resources(keep_asrl=asrl, verbose=verbose)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 116, in get_resources
-    raise NoResourcesFoundError
-gpibtool.gpibtool.NoResourcesFoundError
+ASRL/dev/ttyS3::INSTR
+ASRL/dev/ttyS2::INSTR
+ASRL/dev/ttyS1::INSTR
 
 $ # send the `*IDN?` command to each address:
 $ gpibtool idns
 Traceback (most recent call last):
-  File "/usr/lib/python-exec/python3.11/gpibtool", line 33, in <module>
-    sys.exit(load_entry_point('gpibtool==0.1', 'console_scripts', 'gpibtool')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1157, in __call__
-    return self.main(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1078, in main
+  File [35m"/usr/lib/python3.13/site-packages/serial/serialposix.py"[0m, line [35m398[0m, in [35m_reconfigure_port[0m
+    orig_attr = termios.tcgetattr(self.fd)
+[1;35mtermios.error[0m: [35m(5, 'Input/output error')[0m
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File [35m"/usr/lib/python-exec/python3.13/gpibtool"[0m, line [35m8[0m, in [35m<module>[0m
+    sys.exit([31mcli[0m[1;31m()[0m)
+             [31m~~~[0m[1;31m^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/click/core.py"[0m, line [35m1442[0m, in [35m__call__[0m
+    return [31mself.main[0m[1;31m(*args, **kwargs)[0m
+           [31m~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/click/core.py"[0m, line [35m1363[0m, in [35mmain[0m
     rv = self.invoke(ctx)
-         ^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1688, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1434, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 783, in invoke
-    return __callback(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/decorators.py", line 33, in new_func
+  File [35m"/usr/lib/python3.13/site-packages/click/core.py"[0m, line [35m1830[0m, in [35minvoke[0m
+    return _process_result([31msub_ctx.command.invoke[0m[1;31m(sub_ctx)[0m)
+                           [31m~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/click/core.py"[0m, line [35m1226[0m, in [35minvoke[0m
+    return [31mctx.invoke[0m[1;31m(self.callback, **ctx.params)[0m
+           [31m~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/click/core.py"[0m, line [35m794[0m, in [35minvoke[0m
+    return callback(*args, **kwargs)
+  File [35m"/usr/lib/python3.13/site-packages/click/decorators.py"[0m, line [35m34[0m, in [35mnew_func[0m
     return f(get_current_context(), *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 361, in _list_idns
-    resources = get_resources(keep_asrl=asrl, verbose=verbose)
-                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 116, in get_resources
-    raise NoResourcesFoundError
-gpibtool.gpibtool.NoResourcesFoundError
+  File [35m"/usr/lib/python3.13/site-packages/gpibtool/gpibtool.py"[0m, line [35m384[0m, in [35m_list_idns[0m
+    [31mcommand_idn[0m[1;31m(address=resource, verbose=verbose)[0m,
+    [31m~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/gpibtool/gpibtool.py"[0m, line [35m83[0m, in [35mcommand_idn[0m
+    idn = command_query(address=address, command="*IDN?", verbose=verbose)
+  File [35m"/usr/lib/python3.13/site-packages/gpibtool/gpibtool.py"[0m, line [35m67[0m, in [35mcommand_query[0m
+    inst = get_instrument(
+        address=address,
+        verbose=verbose,
+    )
+  File [35m"/usr/lib/python3.13/site-packages/gpibtool/gpibtool.py"[0m, line [35m53[0m, in [35mget_instrument[0m
+    inst = rm.open_resource(address)
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa/highlevel.py"[0m, line [35m3292[0m, in [35mopen_resource[0m
+    [31mres.open[0m[1;31m(access_mode, open_timeout)[0m
+    [31m~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa/resources/resource.py"[0m, line [35m281[0m, in [35mopen[0m
+    self.session, status = [31mself._resource_manager.open_bare_resource[0m[1;31m([0m
+                           [31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^[0m
+        [1;31mself._resource_name, access_mode, open_timeout[0m
+        [1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1;31m)[0m
+    [1;31m^[0m
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa/highlevel.py"[0m, line [35m3217[0m, in [35mopen_bare_resource[0m
+    return [31mself.visalib.open[0m[1;31m(self.session, resource_name, access_mode, open_timeout)[0m
+           [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa_py/highlevel.py"[0m, line [35m168[0m, in [35mopen[0m
+    sess = cls(session, resource_name, parsed, open_timeout)
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa_py/sessions.py"[0m, line [35m322[0m, in [35m__init__[0m
+    [31mself.after_parsing[0m[1;31m()[0m
+    [31m~~~~~~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa_py/serial.py"[0m, line [35m70[0m, in [35mafter_parsing[0m
+    self.interface = [31mserial.serial_for_url[0m[1;31m([0m
+                     [31m~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^[0m
+        [1;31m("COM" if IS_WIN else "") + self.parsed.board,[0m
+        [1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+        [1;31mtimeout=self.timeout,[0m
+        [1;31m^^^^^^^^^^^^^^^^^^^^^[0m
+        [1;31mwrite_timeout=self.timeout,[0m
+        [1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1;31m)[0m
+    [1;31m^[0m
+  File [35m"/usr/lib/python3.13/site-packages/serial/__init__.py"[0m, line [35m90[0m, in [35mserial_for_url[0m
+    [31minstance.open[0m[1;31m()[0m
+    [31m~~~~~~~~~~~~~[0m[1;31m^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/serial/serialposix.py"[0m, line [35m332[0m, in [35mopen[0m
+    [31mself._reconfigure_port[0m[1;31m(force_update=True)[0m
+    [31m~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/serial/serialposix.py"[0m, line [35m401[0m, in [35m_reconfigure_port[0m
+    raise SerialException("Could not configure port: {}".format(msg))
+[1;35mserial.serialutil.SerialException[0m: [35mCould not configure port: (5, 'Input/output error')[0m
 
 $ # send the `*IDN?` command to an address:
 $ gpibtool command-query "GPIB0::2::INSTR" "*IDN?"
-libgpib: IBOPENDEV ioctl failed
-libgpib: error in is_cic()!
+/usr/lib/python3.13/site-packages/gpib_ctypes/gpib/gpib.py:54: UserWarning: GPIB library not found. Please manually load it using _load_lib(filename). All GPIB functions will raise OSError until the library is manually loaded.
+  warnings.warn(message)
 Traceback (most recent call last):
-  File "/usr/lib/python-exec/python3.11/gpibtool", line 33, in <module>
-    sys.exit(load_entry_point('gpibtool==0.1', 'console_scripts', 'gpibtool')())
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1157, in __call__
-    return self.main(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1078, in main
+  File [35m"/usr/lib/python-exec/python3.13/gpibtool"[0m, line [35m8[0m, in [35m<module>[0m
+    sys.exit([31mcli[0m[1;31m()[0m)
+             [31m~~~[0m[1;31m^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/click/core.py"[0m, line [35m1442[0m, in [35m__call__[0m
+    return [31mself.main[0m[1;31m(*args, **kwargs)[0m
+           [31m~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/click/core.py"[0m, line [35m1363[0m, in [35mmain[0m
     rv = self.invoke(ctx)
-         ^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1688, in invoke
-    return _process_result(sub_ctx.command.invoke(sub_ctx))
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 1434, in invoke
-    return ctx.invoke(self.callback, **ctx.params)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/core.py", line 783, in invoke
-    return __callback(*args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/click/decorators.py", line 33, in new_func
+  File [35m"/usr/lib/python3.13/site-packages/click/core.py"[0m, line [35m1830[0m, in [35minvoke[0m
+    return _process_result([31msub_ctx.command.invoke[0m[1;31m(sub_ctx)[0m)
+                           [31m~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/click/core.py"[0m, line [35m1226[0m, in [35minvoke[0m
+    return [31mctx.invoke[0m[1;31m(self.callback, **ctx.params)[0m
+           [31m~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/click/core.py"[0m, line [35m794[0m, in [35minvoke[0m
+    return callback(*args, **kwargs)
+  File [35m"/usr/lib/python3.13/site-packages/click/decorators.py"[0m, line [35m34[0m, in [35mnew_func[0m
     return f(get_current_context(), *args, **kwargs)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 302, in _command_query
+  File [35m"/usr/lib/python3.13/site-packages/gpibtool/gpibtool.py"[0m, line [35m315[0m, in [35m_command_query[0m
     inst = get_instrument(
-           ^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/gpibtool/gpibtool.py", line 52, in get_instrument
+        address=address,
+        verbose=verbose,
+    )
+  File [35m"/usr/lib/python3.13/site-packages/gpibtool/gpibtool.py"[0m, line [35m53[0m, in [35mget_instrument[0m
     inst = rm.open_resource(address)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/pyvisa/highlevel.py", line 3284, in open_resource
-    res.open(access_mode, open_timeout)
-  File "/usr/lib/python3.11/site-packages/pyvisa/resources/resource.py", line 282, in open
-    self.session, status = self._resource_manager.open_bare_resource(
-                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/pyvisa/highlevel.py", line 3209, in open_bare_resource
-    return self.visalib.open(self.session, resource_name, access_mode, open_timeout)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/pyvisa_py/highlevel.py", line 167, in open
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa/highlevel.py"[0m, line [35m3292[0m, in [35mopen_resource[0m
+    [31mres.open[0m[1;31m(access_mode, open_timeout)[0m
+    [31m~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa/resources/resource.py"[0m, line [35m281[0m, in [35mopen[0m
+    self.session, status = [31mself._resource_manager.open_bare_resource[0m[1;31m([0m
+                           [31m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m[1;31m^[0m
+        [1;31mself._resource_name, access_mode, open_timeout[0m
+        [1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1;31m)[0m
+    [1;31m^[0m
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa/highlevel.py"[0m, line [35m3217[0m, in [35mopen_bare_resource[0m
+    return [31mself.visalib.open[0m[1;31m(self.session, resource_name, access_mode, open_timeout)[0m
+           [31m~~~~~~~~~~~~~~~~~[0m[1;31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa_py/highlevel.py"[0m, line [35m168[0m, in [35mopen[0m
     sess = cls(session, resource_name, parsed, open_timeout)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/pyvisa_py/sessions.py", line 324, in __init__
-    self.after_parsing()
-  File "/usr/lib/python3.11/site-packages/pyvisa_py/gpib.py", line 279, in after_parsing
-    self.interface = Gpib(
-                     ^^^^^
-  File "/usr/lib/python3.11/site-packages/gpib_ctypes/Gpib.py", line 31, in __init__
-    self.id = gpib.dev(name, pad, sad, timeout, send_eoi, eos_mode)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.11/site-packages/gpib_ctypes/gpib/gpib.py", line 306, in dev
-    raise GpibError("dev")
-gpib_ctypes.gpib.gpib.GpibError: dev() error: Errno 19, No such device
+  File [35m"/usr/lib/python3.13/site-packages/pyvisa_py/sessions.py"[0m, line [35m861[0m, in [35m__init__[0m
+    raise ValueError(self.session_issue)
+[1;35mValueError[0m: [35mgpib_ctypes is installed but could not locate the gpib library.
+Please manually load it using:
+  gpib_ctypes.gpib.gpib._load_lib(filename)
+before importing pyvisa.[0m
 
 $ # display troubleshooting info:
 $ gpibtool info
 Output of /usr/bin/pyvisa-info:
 Machine Details:
-   Platform ID:    Linux-6.4.5-gentoo-x86_64-x86_64-Intel-R-_Core-TM-_i7-4910MQ_CPU_@_2.90GHz-with-glibc2.38
-   Processor:      Intel(R) Core(TM) i7-4910MQ CPU @ 2.90GHz
+   Platform ID:    Linux-6.15.8-gentoo-x86_64-x86_64-Intel-R-_Xeon-R-_CPU_E3-1535M_v6_@_3.10GHz-with-glibc2.41
+   Processor:      Intel(R) Xeon(R) CPU E3-1535M v6 @ 3.10GHz
 
 Python:
    Implementation: CPython
-   Executable:     /usr/bin/python3.11
-   Version:        3.11.5
-   Compiler:       GCC 12.2.1 20230304
-   Bits:           64bit
-   Build:          Aug 25 2023 00:06:00 (#main)
+   Executable:     /usr/bin/python3.13
+   Version:        3.13.5
+   Compiler:       GCC 14.2.1 20241221
+   Architecture:   ('x86', 64)
+   Build:          Jun 19 2025 15:26:07 (#main)
    Unicode:        UCS4
 
-PyVISA Version: 1.13.0
+PyVISA Version: 1.14.1
 
 Backends:
    ivi:
-      Version: 1.13.0 (bundled with PyVISA)
+      Version: 1.14.1 (bundled with PyVISA)
       Binary library: Not found
    py:
-      Version: 0.6.2
+      Version: 0.7.2
       ASRL INSTR: Available via PySerial (3.5)
-      USB INSTR: Available via PyUSB (1.2.1). Backend: libusb1
-      USB RAW: Available via PyUSB (1.2.1). Backend: libusb1
+      USB INSTR: Available via PyUSB (1.3.1). Backend: libusb1
+      USB RAW: Available via PyUSB (1.3.1). Backend: libusb1
       TCPIP INSTR: Available 
          Resource discovery:
          - VXI-11: ok
          - hislip: disabled (zeroconf not installed)
+      TCPIP SOCKET: Available 
       VICP INSTR:
          Please install PyVICP to use this resource type.
-      TCPIP SOCKET: Available 
-      GPIB INSTR: Available via Linux GPIB (b'4.3.5')
-      GPIB INTFC: Available via Linux GPIB (b'4.3.5')
-   sim:
-      Version: 0.5.1
-      Spec version: 1.1
+      GPIB INSTR:
+         gpib_ctypes is installed but could not locate the gpib library.
+         Please manually load it using:
+           gpib_ctypes.gpib.gpib._load_lib(filename)
+         before importing pyvisa.
+      GPIB INTFC:
+         gpib_ctypes is installed but could not locate the gpib library.
+         Please manually load it using:
+           gpib_ctypes.gpib.gpib._load_lib(filename)
+         before importing pyvisa.
 
 Output of /usr/bin/lsusb:
-Bus 002 Device 002: ID 8087:8000 Intel Corp. Integrated Rate Matching Hub
-Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus 004 Device 002: ID 8087:8008 Intel Corp. Integrated Rate Matching Hub
-Bus 004 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-Bus 003 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 001 Device 003: ID 138a:003f Validity Sensors, Inc. VFS495 Fingerprint Reader
-Bus 001 Device 002: ID 08bb:29b0 Texas Instruments PCM2900B Audio CODEC
-Bus 001 Device 005: ID 8087:07dc Intel Corp. Bluetooth wireless interface
-Bus 001 Device 007: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
-Bus 001 Device 006: ID 05e3:0608 Genesys Logic, Inc. Hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
 
 ```
