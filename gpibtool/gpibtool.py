@@ -136,7 +136,7 @@ def cli(
 
 
 @cli.command("idn")
-@cli.argument("addresses", type=str, nargs=-1)
+@click.argument("addresses", type=str, nargs=-1)
 @click_add_options(click_global_options)
 @click.pass_context
 def _read_command_idn(
