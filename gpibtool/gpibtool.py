@@ -313,12 +313,12 @@ def _command_query(
         gvd=gvd,
     )
 
+    if gvd:
+        ic(address, command, len(command))
     inst = get_instrument(
         address=address,
         verbose=verbose,
     )
-    if verbose:
-        ic(command, len(command))
     result = inst.query(command).strip()
     output(
         result,
@@ -353,7 +353,13 @@ def _list_addresses(
     if verbose:
         ic(resources)
     for resource in resources:
-        output(resource, reason=None, tty=tty, dict_output=dict_output, verbose=verbose)
+        output(
+            resource,
+            reason=None,
+            tty=tty,
+            dict_output=dict_output,
+            verbose=verbose,
+        )
 
 
 @cli.command("list-idns")
