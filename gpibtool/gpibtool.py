@@ -345,7 +345,7 @@ def _list_addresses(
         )
 
 
-@cli.command("list-idns")
+@cli.command("list-idns", aliases=["list"])
 @click.option("--asrl", is_flag=True)
 @click_add_options(click_global_options)
 @click.pass_context
@@ -381,3 +381,6 @@ def _list_idns(
                 raise e
         except AddressSerialIOError as e:
             icp(e)
+
+
+cli.add_command()
