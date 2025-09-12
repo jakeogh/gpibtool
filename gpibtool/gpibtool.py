@@ -345,7 +345,7 @@ def _list_addresses(
         )
 
 
-@cli.command("list-idns", aliases=["list"])
+@cli.command("list-idns")
 @click.option("--asrl", is_flag=True)
 @click_add_options(click_global_options)
 @click.pass_context
@@ -383,4 +383,4 @@ def _list_idns(
             icp(e)
 
 
-cli.add_command()
+cli.add_command(_list_idns, "list")
