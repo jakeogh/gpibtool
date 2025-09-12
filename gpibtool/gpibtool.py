@@ -379,3 +379,5 @@ def _list_idns(
             ic(e)
             if not e.args[0].endswith("Timeout expired before operation completed."):
                 raise e
+        except AddressSerialIOError as e:
+            icp(e)
