@@ -24,6 +24,7 @@ import click
 import pyvisa
 import sh
 from asserttool import ic
+from asserttool import icp
 from bnftool import get_bnf_syntax
 from click_auto_help import AHGroup
 from clicktool import click_add_options
@@ -33,6 +34,7 @@ from eprint import eprint
 from globalverbose import gvd
 from mptool import output
 from pyvisa.errors import VisaIOError
+from serial.serialutil import SerialException
 from stdiotool import supress_stderr
 
 signal(SIGPIPE, SIG_DFL)
@@ -42,17 +44,22 @@ class NoResourcesFoundError(ValueError):
     pass
 
 
+class AddressSerialIOError(ValueError):
+    pass
+
+
 def get_instrument(
     *,
     address: str,
-    verbose: bool = False,
 ):
-    if verbose:
-        ic(address)
+    ic(address)
     rm = pyvisa.ResourceManager("@py")
-    inst = rm.open_resource(address)
-    if verbose:
-        ic(inst)
+    try:
+        inst = rm.open_resource(address)
+    except SerialException as e:
+        icp(e)
+        raise AddressSerialIOError(address)
+    ic(inst)
     return inst
 
 
@@ -60,38 +67,31 @@ def command_query(
     *,
     address: str,
     command: str,
-    verbose: bool = False,
 ):
-    if verbose:
-        ic(address)
+    ic(address)
     inst = get_instrument(
         address=address,
-        verbose=verbose,
     )
     # idn = inst.query("*IDN?")
     idn = inst.query(command)
-    if verbose:
-        ic(idn)
+    ic(idn)
     return idn.strip()
 
 
 def command_idn(
     *,
     address: str,
-    verbose: bool = False,
 ):
-    idn = command_query(address=address, command="*IDN?", verbose=verbose)
+    idn = command_query(address=address, command="*IDN?")
     return idn
 
 
 def get_resources(
     keep_asrl: bool,
-    verbose: bool = False,
 ):
-    if verbose:
-        ic(keep_asrl)
+    ic(keep_asrl)
 
-    if verbose == inf:
+    if gvd:
         resource_manager = pyvisa.ResourceManager()
         resources = list(resource_manager.list_resources())
     else:
@@ -99,8 +99,7 @@ def get_resources(
             resource_manager = pyvisa.ResourceManager()
             resources = list(resource_manager.list_resources())
 
-    if verbose:
-        ic(resources)
+    ic(resources)
 
     if not keep_asrl:
         try:
@@ -156,11 +155,10 @@ def _read_command_idn(
 
     for address in addresses:
         output(
-            command_idn(address=address, verbose=verbose),
+            command_idn(address=address),
             reason=address,
             dict_output=dict_output,
             tty=tty,
-            verbose=verbose,
         )
 
 
@@ -227,7 +225,6 @@ def _bnf_syntax(
         pretty_print=True,
         dict_output=dict_output,
         tty=tty,
-        verbose=verbose,
     )
     output(
         command_message_elements,
@@ -235,14 +232,12 @@ def _bnf_syntax(
         pretty_print=True,
         dict_output=dict_output,
         tty=tty,
-        verbose=verbose,
     )
     output(
         command,
         reason=None,
         dict_output=dict_output,
         tty=tty,
-        verbose=verbose,
         pretty_print=True,
     )
     output(
@@ -250,7 +245,6 @@ def _bnf_syntax(
         reason=None,
         dict_output=dict_output,
         tty=tty,
-        verbose=verbose,
         pretty_print=True,
     )
 
@@ -276,19 +270,14 @@ def _command_write(
         gvd=gvd,
     )
 
-    inst = get_instrument(
-        address=address,
-        verbose=verbose,
-    )
-    if verbose:
-        ic(command, len(command))
+    inst = get_instrument(address=address)
+    ic(command, len(command))
     result = inst.write(command)
     output(
         result,
         reason={"address": address, "command": command},
         tty=tty,
         dict_output=dict_output,
-        verbose=verbose,
     )
 
 
@@ -315,17 +304,13 @@ def _command_query(
 
     if gvd:
         ic(address, command, len(command))
-    inst = get_instrument(
-        address=address,
-        verbose=verbose,
-    )
+    inst = get_instrument(address=address)
     result = inst.query(command).strip()
     output(
         result,
         reason={"address": address, "command": command},
         tty=tty,
         dict_output=dict_output,
-        verbose=verbose,
     )
 
 
@@ -349,16 +334,14 @@ def _list_addresses(
     )
 
     # https://github.com/pyvisa/pyvisa-py/issues/282
-    resources = get_resources(keep_asrl=asrl, verbose=verbose)
-    if verbose:
-        ic(resources)
+    resources = get_resources(keep_asrl=asrl)
+    ic(resources)
     for resource in resources:
         output(
             resource,
             reason=None,
             tty=tty,
             dict_output=dict_output,
-            verbose=verbose,
         )
 
 
@@ -382,20 +365,17 @@ def _list_idns(
         gvd=gvd,
     )
 
-    resources = get_resources(keep_asrl=asrl, verbose=verbose)
+    resources = get_resources(keep_asrl=asrl)
     for resource in resources:
-        if verbose:
-            ic(resource)
+        ic(resource)
         try:
             output(
-                command_idn(address=resource, verbose=verbose),
+                command_idn(address=resource),
                 reason=resource,
                 tty=tty,
-                verbose=verbose,
                 dict_output=dict_output,
             )
         except VisaIOError as e:
-            if verbose:
-                ic(e)
+            ic(e)
             if not e.args[0].endswith("Timeout expired before operation completed."):
                 raise e
