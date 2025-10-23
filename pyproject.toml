@@ -1,0 +1,57 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+    "tomlkit",
+]
+build-backend = "pep508_url_version_backend"
+backend-path = [
+    ".",
+]
+
+[project]
+name = "gpibtool"
+version = "0.0.1761209517"
+description = "Common functions for GPIB control"
+authors = [
+    { name = "Justin Keogh", email = "github.com@v6y.net" },
+]
+license = "ISC"
+dependencies = []
+requires-python = ">=3.11"
+
+[project.urls]
+Homepage = "https://github.com/jakeogh/gpibtool"
+
+[project.scripts]
+gpibtool = "gpibtool.gpibtool:cli"
+
+[tool.setuptools]
+include-package-data = true
+zip-safe = false
+
+[tool.setuptools.package-data]
+gpibtool = [
+    "py.typed",
+]
+
+[tool.pep508-url-version-backend]
+dependencies-indexed = ["asserttool>=0.0.1761033057", "click", "click-auto-help>=0.0.1761041641", "clicktool>=0.0.1761033403", "eprint>=0.0.1761027667", "globalverbose>=0.0.1761031290", "gpib", "mptool>=0.0.1761032167", "pyvisa", "serial", "sh"]
+dependencies-git = [
+    "asserttool @ git+https://git@github.com/jakeogh/asserttool",
+    "bnftool @ git+https://git@github.com/jakeogh/bnftool",
+    "click",
+    "click-auto-help @ git+https://git@github.com/jakeogh/click-auto-help",
+    "clicktool @ git+https://git@github.com/jakeogh/clicktool",
+    "eprint @ git+https://git@github.com/jakeogh/eprint",
+    "globalverbose @ git+https://git@github.com/jakeogh/globalverbose",
+    "gpib",
+    "mptool @ git+https://git@github.com/jakeogh/mptool",
+    "pyvisa",
+    "serial",
+    "sh",
+    "stdiotool @ git+https://git@github.com/jakeogh/stdiotool",
+]
+index-urls = [
+    "jakeogh.github.io",
+    "pip-index",
+]
