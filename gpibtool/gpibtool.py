@@ -1,15 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf8 -*-
 
-# pylint: disable=missing-docstring               # [C0111] docstrings are always outdated and wrong
-# pylint: disable=invalid-name                    # [C0103] single letter var names, name too descriptive
-
-# import gpib
-# import visa
-# import pyvisa as visa  # conflct with https://github.com/visa-sdk/visa-python
-# from pyvisa.errors import VisaIOError
-# from gpib import GpibError
-
 
 from __future__ import annotations
 
