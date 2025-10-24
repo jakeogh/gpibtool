@@ -5,15 +5,13 @@
 from __future__ import annotations
 
 import sys
-from collections.abc import Sequence
-from math import inf
 from signal import SIG_DFL
 from signal import SIGPIPE
 from signal import signal
 
 import click
+import hs
 import pyvisa
-import sh
 from asserttool import ic
 from asserttool import icp
 from bnftool import get_bnf_syntax
@@ -170,14 +168,14 @@ def _pyvisa_info(
         gvd=gvd,
     )
 
-    info_command = sh.Command("pyvisa-info")
+    info_command = hs.Command("pyvisa-info")
     # python -c "from pyvisa import util; util.get_debug_info()"
-    pyvisa_info_path = str(sh.which("pyvisa-info")).strip()
+    pyvisa_info_path = str(hs.Command("which")("pyvisa-info")).strip()
     eprint(f"Output of {pyvisa_info_path}:")
     info_command(_out=sys.stdout)
 
-    lsusb_command = sh.Command("lsusb")
-    lsusb_path = str(sh.which("lsusb")).strip()
+    lsusb_command = hs.Command("lsusb")
+    lsusb_path = str(hs.Command("which")("lsusb")).strip()
     eprint(f"Output of {lsusb_path}:")
     lsusb_command(_out=sys.stdout)
 
