@@ -10,7 +10,7 @@ backend-path = [
 
 [project]
 name = "gpibtool"
-version = "1!0.0.1761261053"
+version = "1!0.0.1761265123"
 description = "Common functions for GPIB control"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -35,7 +35,7 @@ gpibtool = [
 ]
 
 [tool.pep508-url-version-backend]
-dependencies-indexed = ["asserttool>=1!0.0.1761250315", "click", "click-auto-help>=0.0.1761041641", "clicktool>=0.0.1761033403", "eprint>=1!0.0.1761259337", "globalverbose>=0.0.1761031290", "gpib", "mptool>=0.0.1761032167", "pyvisa", "serial", "sh"]
+dependencies-indexed = ["asserttool>=1!0.0.1761250315", "click", "click-auto-help>=0.0.1761041641", "clicktool>=0.0.1761033403", "eprint>=1!0.0.1761259337", "globalverbose>=0.0.1761031290", "mptool>=0.0.1761032167", "pyvisa", "serial", "sh"]
 dependencies-git = [
     "asserttool @ git+https://git@github.com/jakeogh/asserttool",
     "bnftool @ git+https://git@github.com/jakeogh/bnftool",
@@ -44,7 +44,6 @@ dependencies-git = [
     "clicktool @ git+https://git@github.com/jakeogh/clicktool",
     "eprint @ git+https://git@github.com/jakeogh/eprint",
     "globalverbose @ git+https://git@github.com/jakeogh/globalverbose",
-    "gpib",
     "mptool @ git+https://git@github.com/jakeogh/mptool",
     "pyvisa",
     "serial",
