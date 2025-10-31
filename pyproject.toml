@@ -10,7 +10,7 @@ backend-path = [
 
 [project]
 name = "gpibtool"
-version = "1!0.0.1761897821"
+version = "1!0.0.1761898232"
 description = "Common functions for GPIB control"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
