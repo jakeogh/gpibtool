@@ -4,13 +4,11 @@ requires = [
     "tomlkit",
 ]
 build-backend = "pep508_url_version_backend"
-backend-path = [
-    ".",
-]
+backend-path = ["."]
 
 [project]
 name = "gpibtool"
-version = "1!0.0.1761898232"
+version = "1!0.0.1762748313"
 description = "Common functions for GPIB control"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -35,18 +33,17 @@ gpibtool = [
 ]
 
 [tool.pep508-url-version-backend]
-dependencies-indexed = ["asserttool>=1!0.0.1761250315", "click", "click-auto-help>=0.0.1761041641", "clicktool>=1!0.0.1761810015", "eprint>=1!0.0.1761259337", "globalverbose>=0.0.1761031290", "mptool>=1!0.0.1761897660", "pyvisa", "serial", "sh"]
+dependencies-indexed = ["asserttool>=1!0.0.1761250315", "click-auto-help>=0.0.1761041641", "clicktool>=1!0.0.1761810015", "eprint>=1!0.0.1761259337", "globalverbose>=0.0.1761031290", "mptool>=1!0.0.1761897660", "pyvisa", "pyserial", "sh"]
 dependencies-git = [
     "asserttool @ git+https://git@github.com/jakeogh/asserttool",
     "bnftool @ git+https://git@github.com/jakeogh/bnftool",
-    "click",
     "click-auto-help @ git+https://git@github.com/jakeogh/click-auto-help",
     "clicktool @ git+https://git@github.com/jakeogh/clicktool",
     "eprint @ git+https://git@github.com/jakeogh/eprint",
     "globalverbose @ git+https://git@github.com/jakeogh/globalverbose",
     "mptool @ git+https://git@github.com/jakeogh/mptool",
     "pyvisa",
-    "serial",
+    "pyserial",
     "sh",
     "stdiotool @ git+https://git@github.com/jakeogh/stdiotool",
 ]
