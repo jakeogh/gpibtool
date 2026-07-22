@@ -196,22 +196,33 @@ def _get_dependencies():
     # Handle submodule dependencies
     submodule_deps = config.get("dependencies-submodules", [])
     if submodule_deps:
-        for package_name in submodule_deps:
+        for submodule_name in submodule_deps:
+            # Convert hyphen to underscore for package name
+            package_name = submodule_name.replace("-", "_")
+
             # Try common submodule locations
-            submodule_path = Path(package_name)
+            submodule_path = Path("submodules") / submodule_name
             if not submodule_path.exists():
-                submodule_path = Path("_vendor") / package_name
+                submodule_path = Path("_vendor") / submodule_name
             if not submodule_path.exists():
-                submodule_path = Path("submodules") / package_name
+                submodule_path = Path(submodule_name)
 
             if submodule_path.exists() and submodule_path.is_dir():
                 if _check_submodule_needs_install(package_name, submodule_path):
                     # Add as local path dependency
                     deps.append(f"{package_name} @ file://{submodule_path.resolve()}")
-                # else: already installed and current, skip
+                    print(
+                        f"pep508_url_version_backend: Adding {package_name} from submodule (needs update)",
+                        file=sys.stderr,
+                    )
+                else:
+                    print(
+                        f"pep508_url_version_backend: Skipping {package_name} - already up to date",
+                        file=sys.stderr,
+                    )
             else:
                 print(
-                    f"WARNING: Submodule {package_name} not found, skipping",
+                    f"WARNING: Submodule {submodule_name} not found, skipping",
                     file=sys.stderr,
                 )
 
@@ -237,7 +248,7 @@ def _create_modified_pyproject():
         )
         return pyproject_path
 
-    with open(pyproject_path, "r") as f:
+    with open(pyproject_path) as f:
         content = f.read()
         doc = toml_parse(content)
 
@@ -340,7 +351,9 @@ def build_wheel(
 ):
     """PEP 517 hook: Build a wheel."""
     return _orig_backend.build_wheel(
-        wheel_directory, config_settings, metadata_directory
+        wheel_directory,
+        config_settings,
+        metadata_directory,
     )
 
 
@@ -376,6 +389,12 @@ def build_editable(
     """PEP 660 hook: Build an editable wheel."""
     if hasattr(_orig_backend, "build_editable"):
         return _orig_backend.build_editable(
-            wheel_directory, config_settings, metadata_directory
+            wheel_directory,
+            config_settings,
+            metadata_directory,
         )
-    return build_wheel(wheel_directory, config_settings, metadata_directory)
+    return build_wheel(
+        wheel_directory,
+        config_settings,
+        metadata_directory,
+    )
