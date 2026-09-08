@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gpibtool"
-version = "1!0.0.1787193092"
+version = "1!0.0.1788850256"
 description = "Common functions for GPIB control"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -17,10 +17,10 @@ dependencies = [
     "sh",
     "asserttool @ git+https://github.com/jakeogh/asserttool@4bd23a06c2161e488415acde89c29537e6720cc1",
     "bnftool @ git+https://github.com/jakeogh/bnftool@ad5c7cdd80c1c8ff20480a3eff1e0ed0c3abebbc",
-    "click-auto-help @ git+https://github.com/jakeogh/click-auto-help@c53f57c78529a51ae9b03f579d7ee6f2d63ca03a",
-    "clicktool @ git+https://github.com/jakeogh/clicktool@a9894f9d3a06701c5f73cd8b2794028042c9b420",
+    "click-auto-help @ git+https://github.com/jakeogh/click-auto-help@7bc2bfd39c7fc11eba09f70861d5121900d1243a",
+    "clicktool @ git+https://github.com/jakeogh/clicktool@4bc98af7590652693aef664af7485acde40688c2",
     "eprint @ git+https://github.com/jakeogh/eprint@6ee1deca0c24b684eb5093247d6bd22e11f1b057",
-    "globalverbose @ git+https://github.com/jakeogh/globalverbose@59abc758c18c0b85e9e61c1e14e5a64a81bb220e",
+    "globalverbose @ git+https://github.com/jakeogh/globalverbose@ed36633a3208520a523e528e9371988fc33ffea3",
     "mptool @ git+https://github.com/jakeogh/mptool@a8579325a458cc33c6a212685aa50e16a457ccf6",
     "stdiotool @ git+https://github.com/jakeogh/stdiotool@e22dbff405625082bf2f84198f73879190119c79",
 ]
