@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gpibtool"
-version = "1!0.0.1788850591"
+version = "1!0.0.1789730264"
 description = "Common functions for GPIB control"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -21,7 +21,7 @@ dependencies = [
     "clicktool @ git+https://github.com/jakeogh/clicktool@4bc98af7590652693aef664af7485acde40688c2",
     "eprint @ git+https://github.com/jakeogh/eprint@6ee1deca0c24b684eb5093247d6bd22e11f1b057",
     "globalverbose @ git+https://github.com/jakeogh/globalverbose@ed36633a3208520a523e528e9371988fc33ffea3",
-    "mptool @ git+https://github.com/jakeogh/mptool@a8579325a458cc33c6a212685aa50e16a457ccf6",
+    "mptool @ git+https://github.com/jakeogh/mptool@49db67178bc07c5664b20d9d0313746af08b039c",
     "stdiotool @ git+https://github.com/jakeogh/stdiotool@e22dbff405625082bf2f84198f73879190119c79",
 ]
 requires-python = ">=3.11"
