@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gpibtool"
-version = "1!0.0.1789730264"
+version = "1!0.0.1790565666"
 description = "Common functions for GPIB control"
 authors = [
     { name = "Justin Keogh", email = "github.com@v6y.net" },
@@ -18,7 +18,7 @@ dependencies = [
     "asserttool @ git+https://github.com/jakeogh/asserttool@4bd23a06c2161e488415acde89c29537e6720cc1",
     "bnftool @ git+https://github.com/jakeogh/bnftool@ad5c7cdd80c1c8ff20480a3eff1e0ed0c3abebbc",
     "click-auto-help @ git+https://github.com/jakeogh/click-auto-help@0308bf2e30095ce9c87a083e1f013731827e60aa",
-    "clicktool @ git+https://github.com/jakeogh/clicktool@4bc98af7590652693aef664af7485acde40688c2",
+    "clicktool @ git+https://github.com/jakeogh/clicktool@999e9c509115b90ab0149b0b611c0ca90a7baa85",
     "eprint @ git+https://github.com/jakeogh/eprint@6ee1deca0c24b684eb5093247d6bd22e11f1b057",
     "globalverbose @ git+https://github.com/jakeogh/globalverbose@ed36633a3208520a523e528e9371988fc33ffea3",
     "mptool @ git+https://github.com/jakeogh/mptool@49db67178bc07c5664b20d9d0313746af08b039c",
